@@ -1,12 +1,9 @@
 import numpy as np
 
 from . import statistics as stat
+from ._util import unzip
 
 default_size = 10**4
-
-def unzip2(iterable):
-    rx, ry = zip(*iterable)
-    return list(rx), list(ry)
 
 def resample(data): return np.random.choice(data, len(data))
 def resample_pairs(x, y):
@@ -15,7 +12,7 @@ def resample_pairs(x, y):
     _y = np.array(y)
 
     indices = np.arange(0, len(_x))
-    return unzip2([(_x[i], _y[i]) for i in resample(indices)])
+    return unzip([(_x[i], _y[i]) for i in resample(indices)])
 
 def replicate(data, calc_statistic, size=default_size):
     return np.array([calc_statistic(resample(data)) for _ in range(size)])
@@ -27,4 +24,4 @@ def replicate_pairs(x, y, f, size=default_size):
     return np.array([f(*resample_pairs(x, y)) for _ in range(size)])
 
 def lin_fit(x, y, size=default_size):
-    return unzip2([stat.lin_fit(*resample_pairs(x, y)) for _ in range(size)])
+    return unzip([stat.lin_fit(*resample_pairs(x, y)) for _ in range(size)])
