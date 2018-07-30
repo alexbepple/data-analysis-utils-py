@@ -1,2 +1,2 @@
 test:
-	pipenv run pytest
+	MPLBACKEND=svg pipenv run pytest
