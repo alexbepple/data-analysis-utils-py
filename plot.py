@@ -38,8 +38,9 @@ def ecdf(data, xlabel=None):
     _add_labels(xlabel, 'ECDF')
     plt.margins(0.02)
 
-def pmf(data, xlabel='', bins=0):
-    if bins == 0: bins = np.arange(0, max(data) + 2) - 0.5
+def pmf(data, xlabel='', bins=None):
+    if bins is None: bins = np.arange(0, max(data) + 2) - 0.5
+    
     plt.hist(data, density=True, bins=bins, histtype='step')
     plt.xlabel(xlabel)
     plt.ylabel('p')
