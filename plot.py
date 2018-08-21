@@ -11,6 +11,10 @@ def _add_labels(xlabel=None, ylabel=None):
     if xlabel: plt.xlabel(xlabel)
     if ylabel: plt.ylabel(ylabel)
 
+def plot(data, xlabel=None, ylabel=None):
+    plt.plot(data)
+    _add_labels(xlabel, ylabel)
+
 def swarm(x, y, data, xlabel=None, ylabel=None):
     _ = sns.swarmplot(data=data, x=x, y=y)
     _add_labels(xlabel, ylabel)
